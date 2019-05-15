@@ -1,12 +1,14 @@
 package com.cloud.study.cqs.eurekaclient.web;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RefreshScope
+@ConfigurationProperties(prefix = "test")
 public class IndexController {
 
     @Value("${server.port}")
@@ -19,7 +21,7 @@ public class IndexController {
     private String title;
 
     @RequestMapping("index")
-    public String index(){
-        return String.format("Hello to %s,port:%d,title=%s",applicationName,port,title);
+    public String index() {
+        return String.format("Hello to %s,port:%d,title=%s", applicationName, port, title);
     }
 }
